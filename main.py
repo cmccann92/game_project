@@ -1,5 +1,6 @@
-<<<<<<< HEAD
+from playable_chars import *
+from enemy import *
+from weapon import *
+from gamestory import *
 
-
-=======
->>>>>>> 4fb256a9e1bb71a0684e0a78b402cfa0fc509593
+weapon_choice()

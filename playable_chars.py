@@ -1,42 +1,57 @@
 class Character:
-    def __init__(self, name, health, damage, armor, accuracy, dodge, energy=100, xp=0):
+    def __init__(self, name, health, damage, armor):
         self.name = name
         self.health = health
         self.damage = damage
         self.armor = armor
         self.level = 1
-        self.accuracy = accuracy
-        self.dodge = dodge
-        self.energy = energy
-        self.xp = xp
+        self.inventory = []
 
     def get_info(self):
-        pass
+        return f"Your character {self.name}'s current stats:\n current Level: {self.level} Health: {self.health}\n Damage: {self.damage}\n Armor: {self.armor}\n Accuracy: {self.accuracy}\n Dodge: {self.dodge}"
+        
 
-    def shoot():
-        pass
+    def shoot(self,target):
+        weapon_dmg = 5
+        total = self.damage + weapon_dmg
+        return f"You shoot {target} with your weapon. You do {total} damage"
     
     def take_damage(self,damage):
-        self.health -= damage
+        total =  damage - self.armor
+        self.health -= total
+        return f"You took {total} damage. Remaining health: {self.health}"
 
-    def run():
-        pass
-    
-    def hit():
-        pass
+    def run(self):
+        return f"You run away from the fight."
+        
+    def calc_damage(self, weapon_dmg):
+        total = self.damage + weapon_dmg
+        self.damage = total
+
+    def hit(self,weapon):
+        if weapon.ammo == 0:
+            total = self.damage + weapon_dmg
+        return f"You hit the enemy. You did {total} damage."
+        
 
 class Soldier(Character):
     def __init__(self, name):
-        super().__init__(name, 90, 10, 5, 70, 20)
+        super().__init__(name, 90, 10, 5)
         self.ammo_box = 2
 
     def get_info(self):
         super().get_info()
         return f"Your character {self.name}'s current stats:\n current Level: {self.level} Health: {self.health}\n Damage: {self.damage}\n Armor: {self.armor}\n Accuracy: {self.accuracy}\n Dodge: {self.dodge}"
 
-    def shoot(self):
-        super().shoot()
-
+    def calc_damage(self, weapon_dmg):
+        total = self.damage + weapon_dmg
+        self.damage = total
+    
+    def take_damage(self,damage):
+        total =  damage - self.armor
+        self.health -= total
+        print(f"You took {total} damage. Remaining health: {self.health}")
+    
     def hit(self):
         super().hit()
 
@@ -49,10 +64,23 @@ class Soldier(Character):
 
 class Medic(Character):
     def __init__(self, name):
-        super().__init__(name, 110, 6, 4, 60, 30)
+        super().__init__(name, 100, 6, 4)
 
-    def shoot(self):
-        super().shoot()
+    def shoot(self,target):
+        weapon_dmg = 5
+        total = self.damage + weapon_dmg
+        print(f"You shoot {target} with your weapon. You do {total} damage")
+    
+    def take_damage(self,damage):
+        super().take_damage(damage)
+        total =  damage - self.armor
+        self.health -= total
+        self.health += 3
+        print(f"You took {total} damage. You healed yourself for 3 with your self heal ability. Remaining health: {self.health}")
+    
+    def calc_damage(self, weapon_dmg):
+        total = self.damage + weapon_dmg
+        self.damage = total
 
     def hit(self):
         super().hit()
@@ -60,14 +88,10 @@ class Medic(Character):
     def run(self):
         super().run()
     
-    def self_heal(self):
-        self.energy -= 10
-        self.health += 5
-        return f"Healing kit used. Current health: {self.health}"
     
 class Demolition(Character):
     def __init__(self, name):
-        super().__init__(name, 70, 12, 7, 40, 15)
+        super().__init__(name, 70, 12, 7)
         self.pipe_bomb = 2
     
     def shoot(self):
@@ -81,11 +105,11 @@ class Demolition(Character):
 
     def kaboom(self):
         self.pipe_bomb -= 1
-        return f"Thrown pipe bomb! Damaged all enemies for  "
+        return f"Thrown pipe bomb! Damaged all enemies for {self.damage * 10} "
     
 class Sniper(Character):
     def __init__(self, name):
-        super().__init__(name, 60, 15, 3, 80, 10)
+        super().__init__(name, 60, 15, 3)
 
     def shoot(self):
         super().shoot()
@@ -97,12 +121,11 @@ class Sniper(Character):
         super().run()
     
     def sharpshooter(self):
-        self.energy -= 50
-        self.accuracy = 100
-        return f"Sharpshooter ability active. You will only deal headshots for the next 2 rounds"
+        
+        return f"Sharpshooter ability active. You will only deal headshots for the next 10 seconds"
 
 class CharacterFactory:
-    def create_char(self, char_class, name):
+    def create_char(char_class, name):
         if char_class.lower() == "soldier":
             return Soldier(name)
         elif char_class.lower() == "medic":
@@ -115,3 +138,5 @@ class CharacterFactory:
             raise ValueError(f"Invalid character class")
 
 
+
+player = CharacterFactory.create_char("Sniper","Hans")

@@ -3,9 +3,10 @@ import random
 
 
 class Enemy:
-    def __init__(self, name, health: int):
+    def __init__(self, name, health: int, damage):
         self.name = name
         self.health = health
+        self.damage = damage
 
     def attack(self, target):
         print(f'{self.name} attacks {target.name}')
@@ -25,13 +26,14 @@ class Enemy:
 
 
 class Zombie(Enemy):
-    def __init__(self, name, health, bite):
-        super().__init__(name, health)
+    def __init__(self, name, health, bite, damage):
+        super().__init__(name, health,damage)
         self.bite = bite
+        damage = 10
 
     def attack(self, target):
         print(f'{self.name} bites the {target.name}')
-        target.defend(self)
+        return 
 
     def defend(self, attacker):
         p_choices = [1, 2, 3]
@@ -41,15 +43,15 @@ class Zombie(Enemy):
         if x == 1:
             print(
                 f"{self.name} dodges {attacker.name}'s attack, but attack hits the {y}.")
-            self.take_damage(10)
+            self.take_damage(attacker.damage)
         elif x == 2:
             print(
                 f'{self.name}  cannot dodge the {attacker.name} and get hit in body!')
-            self.take_damage(20)
+            self.take_damage(attacker.damage * 2)
         else:
             print(
                 f"{attacker.name} attack hit {self.name}'s head. Critical strike!!!")
-            self.take_damage(self.health)
+            self.take_damage(attacker.damage * 5)
 
 
 class ZombieDog(Enemy):
@@ -89,7 +91,7 @@ class MutantZombie(Enemy):
 
     def attack(self, target):
         print(f'{self.name} bites the survivor{target.name}')
-        target.defend(self)
+        #target.defend(self)
 
     def defend(self, attacker):
         p_choices = [1, 2, 3, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4]
@@ -114,13 +116,13 @@ class MutantZombie(Enemy):
             self.take_damage(self.health)
 
 
-zombie = Zombie('Zombie', 100, 10)
-dog_z = ZombieDog('ZombieDog', 120, 10)
+#zombie = Zombie('Zombie', 100, 10)
+#dog_z = ZombieDog('ZombieDog', 120, 10)
 
-while zombie.health > 0 and dog_z.health > 0:
+"""while zombie.health > 0 and dog_z.health > 0:
     if zombie.health > 0:
         sleep(0.5)
         zombie.attack(dog_z)
     if dog_z.health > 0:
         sleep(0.5)
-        dog_z.attack(zombie)
+        dog_z.attack(zombie)"""
