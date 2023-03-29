@@ -45,9 +45,9 @@ choice = input("Enter 'fight', 'sneak': ")
 if choice == "fight":
     print("You and the other survivors fight your way through the zombies.")
     print("You use your weapons and skills to take out as many zombies as you can.")
-    print("You're able to make it to a safe zone and join a group of survivors.")
+    print("Congratulations, " + name + "! You're able to make it to a safe zone and join a group of survivors.")
 elif choice == "sneak":
     print("You and the other survivors try to sneak past the zombies.")
     print("You move slowly and quietly, trying not to attract attention.")
-    print("You're able to make it to a safe zone, but some of the")
+    print("You're able to make it to a safe zone, but some of them")
     print("Congratulations, " + name + "! You survived the zombie .")
