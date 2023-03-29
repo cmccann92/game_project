@@ -5,7 +5,7 @@ print("Hello, " + name + "! The world has been overrun by zombies and you're one
 
 # Searching for supplies
 print("You're in a small town and need to find supplies to survive.")
-print("You can either search the grocery store, the weapon store, or the hospital.")
+print("You can either search the grocery store, the weapon store, or Medical Care.")
 choice = input("Enter 'grocery', 'weapon store', or 'Medical Care': ")
 if choice == "grocery":
     print("You search the grocery store and find some food and water.")
@@ -17,14 +17,14 @@ elif choice == "weapon store":
 elif choice == "medical care":
     print("You search the hospital and find some medical supplies.")
     print("You find some bandages and painkillers.")
-    print("You also find a defibrillator.")
+    print("You also find a surgical equipments.")
 
 # Finding a safe place
 print("You need to find a safe place to hide from the zombies.")
 print("You can either head to the top floor of a building, call for a helicopter rescue, or the police station.")
-choice = input("Enter 'top floor','helicopter':, or 'police station': ")
+choice = input("Enter 'top floor','helicopter', or 'police station': ")
 if choice == "Top floor":
-    print("You head to the top floor of a tall building and barricade yourself inside.")
+    print("You head to the top floor of a building and block yourself inside.")
     print("You find some other survivors and work together to secure the building.")
     print("You're able to hold off the zombies for a while, but they eventually break through.")
     print("You and the other survivors are forced to flee.")
