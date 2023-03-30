@@ -26,9 +26,10 @@ elif answer == 4:
 player = CharacterFactory.create_char(player_class, name)
 print("Hello, " + name + "! The world has been overrun by zombies and you're one of the few survivors.")
 
-zombie = Zombie("Zombie",80,9)
+zombie = Zombie()
 weapon_choice(player)
-system("clear")
+print(type(player.weapon[0].type))
+#system("clear")
 combat(player,zombie)
 sleep(2)
 system("clear")
