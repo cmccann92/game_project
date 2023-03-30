@@ -64,13 +64,13 @@ def weapon_choice(player):
         usr_response = int(input("Enter your choice: "))
 
         if usr_response == 1:  
-            gun = Lancer('Gun',660)
+            gun = Lancer('Gun',10)
             gun.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
                 print("Nice choice")
-                player.inventory.append(gun)
-                exit()
+                player.weapon.append(gun)
+                break
             elif ans.lower() == "n":
                 continue
             
@@ -82,7 +82,8 @@ def weapon_choice(player):
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
                 print("Nice choice")
-                exit()
+                player.weapon.append(gun1)
+                break
             elif ans.lower() == "n":
                 continue
 
@@ -92,7 +93,8 @@ def weapon_choice(player):
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
                 print("Nice choice")
-                exit()
+                player.weapon.append(ball)
+                break
             elif ans.lower() == "n":
                 continue
         
@@ -102,7 +104,8 @@ def weapon_choice(player):
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
                 print("Nice choice")
-                exit()
+                player.weapon.append(sword)
+                break
             elif ans.lower() == "n":
                 continue
 
@@ -112,7 +115,8 @@ def weapon_choice(player):
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
                 print("Nice choice")
-                exit()
+                player.weapon.append(axe)
+                break
             elif ans.lower() == "n":
                 continue
 
@@ -122,6 +126,7 @@ def weapon_choice(player):
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
                 print("Nice choice")
-                exit()
+                player.weapon.append(bomb)
+                break
             elif ans.lower() == "n":
                 continue

@@ -6,6 +6,7 @@ class Character:
         self.armor = armor
         self.level = 1
         self.inventory = []
+        self.weapon = []
 
     def get_info(self):
         return f"Your character {self.name}'s current stats:\n current Level: {self.level} Health: {self.health}\n Damage: {self.damage}\n Armor: {self.armor}\n Accuracy: {self.accuracy}\n Dodge: {self.dodge}"

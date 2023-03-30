@@ -27,6 +27,8 @@ print("Hello, " + name + "! The world has been overrun by zombies and you're one
 
 
 weapon_choice(player)
+system("clear")
+print(player.inventory[0].damage)
 # Searching for supplies
 print("You're in a small town and need to find supplies to survive.")
 print("You can either search the grocery store, the weapon store, or Medical Care.")
@@ -35,6 +37,7 @@ if choice == "grocery":
     system("clear")
     print("You search the grocery store and find some food and water.")
     print("You also find a first aid kit and a knife.")
+    player.inventory.append("Knife", "First_aid_kit")
 elif choice == "weapon store":
     system("clear")
     print("You search the weapon store and find some weapons and tools.")
