@@ -9,30 +9,36 @@ class Character:
         self.weapon = []
 
     def get_info(self):
-        return f"Your character {self.name}'s current stats:\n current Level: {self.level} Health: {self.health}\n Damage: {self.damage}\n Armor: {self.armor}\n Accuracy: {self.accuracy}\n Dodge: {self.dodge}"
-        
+       print(f"Your character {self.name}'s current stats:\n current Level: {self.level} Health: {self.health}\n Damage: {self.damage}\n Armor: {self.armor}\n Accuracy: {self.accuracy}\n Dodge: {self.dodge}")
+    
+    def check_inventory(self):
+        for item in self.inventory:
+            print(item)
 
     def shoot(self,target):
-        weapon_dmg = 5
-        total = self.damage + weapon_dmg
-        return f"You shoot {target} with your weapon. You do {total} damage"
+        if self.weapon[0].type == "melee":
+           print(f"No range weapon equipped")
+        total = self.damage + self.weapon[0].damage
+        print(f"You shoot {target} with your weapon. You do {total} damage")
     
     def take_damage(self,damage):
         total =  damage - self.armor
         self.health -= total
-        return f"You took {total} damage. Remaining health: {self.health}"
+        print(f"You took {total} damage. Remaining health: {self.health}")
 
     def run(self):
-        return f"You run away from the fight."
+       print(f"You run away from the fight.")
         
-    def calc_damage(self, weapon_dmg):
-        total = self.damage + weapon_dmg
-        self.damage = total
+    """def calc_damage(self):
+        total = self.damage + self.weapon[0].damage
+        self.damage = total"""
 
-    def hit(self,weapon):
-        if weapon.ammo == 0:
-            total = self.damage + weapon_dmg
-        return f"You hit the enemy. You did {total} damage."
+    def hit(self):
+        if self.weapon[0].type == "range":
+           print(f"No melee weapon equipped")
+        else:
+            total = self.damage + self.weapon[0].damage
+        print(f"You hit the enemy. You did {total} damage.")
         
 
 class Soldier(Character):
@@ -42,11 +48,11 @@ class Soldier(Character):
 
     def get_info(self):
         super().get_info()
-        return f"Your character {self.name}'s current stats:\n current Level: {self.level} Health: {self.health}\n Damage: {self.damage}\n Armor: {self.armor}\n Accuracy: {self.accuracy}\n Dodge: {self.dodge}"
+        print(f"Your character {self.name}'s current stats:\n current Level: {self.level} Health: {self.health}\n Damage: {self.damage}\n Armor: {self.armor}\n Accuracy: {self.accuracy}\n Dodge: {self.dodge}")
 
-    def calc_damage(self, weapon_dmg):
-        total = self.damage + weapon_dmg
-        self.damage = total
+    # def calc_damage(self):
+    #     total = self.damage + self.weapon[0].damage
+    #     self.damage = total
     
     def take_damage(self,damage):
         total =  damage - self.armor
@@ -61,7 +67,7 @@ class Soldier(Character):
     
     def ammo(self, weapon):
         self.ammo_box -= 1
-        return f"Ammo box used. All weapons reloaded" 
+        print(f"Ammo box used. All weapons reloaded")
 
 class Medic(Character):
     def __init__(self, name):
@@ -69,7 +75,7 @@ class Medic(Character):
 
     def shoot(self,target):
         weapon_dmg = 5
-        total = self.damage + weapon_dmg
+        total = self.damage + self.weapon[0].damage
         print(f"You shoot {target} with your weapon. You do {total} damage")
     
     def take_damage(self,damage):
@@ -79,9 +85,9 @@ class Medic(Character):
         self.health += 3
         print(f"You took {total} damage. You healed yourself for 3 with your self heal ability. Remaining health: {self.health}")
     
-    def calc_damage(self, weapon_dmg):
-        total = self.damage + weapon_dmg
-        self.damage = total
+    # def calc_damage(self):
+    #     total = self.damage + self.weapon[0].damage
+    #     self.damage = total
 
     def hit(self):
         super().hit()

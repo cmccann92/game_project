@@ -64,7 +64,7 @@ def weapon_choice(player):
         usr_response = int(input("Enter your choice: "))
 
         if usr_response == 1:  
-            gun = Lancer('Gun',10)
+            gun = Lancer('range',10)
             gun.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
@@ -77,7 +77,7 @@ def weapon_choice(player):
             
 
         elif usr_response == 2:
-            gun1 = Headhunter('Gun',8)
+            gun1 = Headhunter('range',8)
             gun1.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
@@ -88,7 +88,7 @@ def weapon_choice(player):
                 continue
 
         elif usr_response == 3:
-            ball = Baseball('Spiked bat',6)
+            ball = Baseball('melee',6)
             ball.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
@@ -99,7 +99,7 @@ def weapon_choice(player):
                 continue
         
         elif usr_response == 4:
-            sword = Sword('Energy Sword',7) 
+            sword = Sword('melee,7') 
             sword.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
@@ -110,7 +110,7 @@ def weapon_choice(player):
                 continue
 
         elif usr_response == 5:
-            axe = Axe('Axe',5)
+            axe = Axe('melee',5)
             axe.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
@@ -121,7 +121,7 @@ def weapon_choice(player):
                 continue
 
         elif usr_response == 6:
-            bomb = Bomb('Bomb',10)
+            bomb = Bomb('range',10)
             bomb.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":

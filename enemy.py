@@ -26,9 +26,9 @@ class Enemy:
 
 
 class Zombie(Enemy):
-    def __init__(self, name, health, bite, damage):
+    def __init__(self, name, health, damage):
         super().__init__(name, health,damage)
-        self.bite = bite
+    #    self.bite = bite
         damage = 10
 
     def attack(self, target):

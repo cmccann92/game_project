@@ -4,6 +4,7 @@ from enemy import *
 from weapon import *
 from gamestory import *
 from time import sleep
+from combat import *
 
 # Game Story of Zombie 
 print("Welcome to the Zombie game!")
@@ -25,10 +26,12 @@ elif answer == 4:
 player = CharacterFactory.create_char(player_class, name)
 print("Hello, " + name + "! The world has been overrun by zombies and you're one of the few survivors.")
 
-
+zombie = Zombie("Zombie",80,9)
 weapon_choice(player)
 system("clear")
-print(player.inventory[0].damage)
+combat(player,zombie)
+sleep(2)
+system("clear")
 # Searching for supplies
 print("You're in a small town and need to find supplies to survive.")
 print("You can either search the grocery store, the weapon store, or Medical Care.")
@@ -36,18 +39,43 @@ choice = input("Enter 'grocery', 'weapon store', or 'Medical Care': ")
 if choice == "grocery":
     system("clear")
     print("You search the grocery store and find some food and water.")
-    print("You also find a first aid kit and a knife.")
-    player.inventory.append("Knife", "First_aid_kit")
+    print("You also find a first aid kit and a Sword.")
+    player.inventory.append("First_aid_kit")
+    print(player.inventory[0])
+    for weapon in player.weapon:
+        print(f"You already have a weapon. Replace {player.weapon[0].type} with Sword?  (Y/N)")
+        ans = input()
+        if ans.lower() == "y":
+            print(f"replaced {player.weapon[0].type} with Sword")
+            sword = Sword("melee",7)
+            player.weapon[0] = sword
+    
+
 elif choice == "weapon store":
     system("clear")
     print("You search the weapon store and find some weapons and tools.")
-    print("You find a shotgun and some ammunition.")
-    print("You also find a hammer and some nails.")
+    print("You find an Axe")
+    print("You also find some twinkies and energy drinks")
+    for weapon in player.weapon:
+        print(f"You already have a weapon. Replace {player.weapon[0].type} with Axe?  (Y/N)")
+        ans = input()
+        if ans.lower() == "y":
+            print(f"replaced {player.weapon[0].type} with Axe")
+            axe = Axe("melee",5)
+            player.weapon[0] = axe
 elif choice == "medical care":
     system("clear")
     print("You search the hospital and find some medical supplies.")
-    print("You find some bandages and painkillers.")
-    print("You also find a surgical equipments.")
+    player.inventory.append("first_aid_kit")
+    print("Added First aid kit to inventory")
+    print("You also find a Baseball bat")
+    for weapon in player.weapon:
+        print(f"You already have a weapon. Replace {player.weapon[0].type} with Baseball bat?  (Y/N)")
+        ans = input()
+        if ans.lower() == "y":
+            print(f"replaced {player.weapon[0].type} with Baseball bat")
+            bball = Baseball("melee",6)
+            player.weapon[0] = bball
 
 # Finding a safe place
 system("clear")
