@@ -26,8 +26,8 @@ class Enemy:
 
 
 class Zombie(Enemy):
-    def __init__(self, name, health, damage):
-        super().__init__(name, health,damage)
+    def __init__(self):
+        super().__init__("Zombie", 75, 8)
     #    self.bite = bite
         damage = 10
 
@@ -55,9 +55,9 @@ class Zombie(Enemy):
 
 
 class ZombieDog(Enemy):
-    def __init__(self, name, health, beast_bite):
-        super().__init__(name, health)
-        self.beast_bite = beast_bite
+    def __init__(self):
+        super().__init__("Zombie Dog", 90, 13)
+        
 
     def attack(self, target):
         print(f'{self.name} bites the  {target.name}')
@@ -85,9 +85,9 @@ class ZombieDog(Enemy):
 
 
 class MutantZombie(Enemy):
-    def __init__(self, name, health, beast_bite):
-        super().__init__(name, health)
-        self.beast_bite = beast_bite
+    def __init__(self):
+        super().__init__("Mutant Zombie", 100, 15)
+        
 
     def attack(self, target):
         print(f'{self.name} bites the survivor{target.name}')

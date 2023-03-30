@@ -66,7 +66,6 @@ def weapon_choice(player):
 
         if usr_response == 1:  
             gun = Lancer('range',10)
-            gun = Lancer('Gun',10)
             gun.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":

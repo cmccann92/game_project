@@ -15,11 +15,13 @@ class Character:
         for item in self.inventory:
             print(item)
 
-    def shoot(self,target):
-        if self.weapon[0].type == "melee":
-           print(f"No range weapon equipped")
-        total = self.damage + self.weapon[0].damage
-        print(f"You shoot {target} with your weapon. You do {total} damage")
+    def shoot(self,enemy):
+        for item in self.weapon:   
+            if 'melee' in item.type:
+                print(f"No melee weapon equipped")
+            elif 'range' in item.type:
+                total = self.damage + self.weapon[0].damage
+                print(f"You hit the {enemy}. You did {total} damage.")
     
     def take_damage(self,damage):
         total =  damage - self.armor
@@ -33,12 +35,18 @@ class Character:
         total = self.damage + self.weapon[0].damage
         self.damage = total"""
 
-    def hit(self):
-        if self.weapon[0].type == "range":
-           print(f"No melee weapon equipped")
-        else:
-            total = self.damage + self.weapon[0].damage
-        print(f"You hit the enemy. You did {total} damage.")
+    def hit(self, enemy):
+
+        for item in self.weapon:
+            # for i in item.type:           #bugfix
+            #     print(i)
+            if 'range' in item.type:
+                print(f"No melee weapon equipped")
+                return False
+            elif 'melee' in item.type:
+                total = self.damage + self.weapon[0].damage
+                print(f"You hit the {enemy}. You did {total} damage.")
+                return True
         
 
 class Soldier(Character):
@@ -59,8 +67,9 @@ class Soldier(Character):
         self.health -= total
         print(f"You took {total} damage. Remaining health: {self.health}")
     
-    def hit(self):
-        super().hit()
+    def hit(self,enemy):
+        super().hit(enemy)
+        
 
     def run(self):
         super().run()
