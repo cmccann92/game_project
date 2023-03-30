@@ -132,7 +132,3 @@ class CharacterFactory:
             return Sniper(name)
         else:
             raise ValueError(f"Invalid character class")
-
-
-
-
