@@ -6,53 +6,77 @@ from gamestory import *
 from time import sleep
 from combat import *
 
-# Game Story of Zombie 
-print("Welcome to the Zombie game!")
-name = input("What's your name? ")
-print("What class do you choose?\n [1] Soldier: HP: 90. Damage: 10. Armor: 5\n [2] Medic: HP 100. Damage: 6. Armor: 4\n [3] Demolition: HP: 70. Damage: 12. Armor: 7\n [4] Sniper: HP: 60. Damage: 15. Armor: 3 ")
-answer = int(input())
-if answer == 1:
-    print("You are now a Soldier ")
-    player_class = "soldier"
-elif answer == 2:
-    print("You are now a Medic ")
-    player_class = "medic"
-elif answer == 3:
-    print("You are now a Demolition ")
-    player_class = "demolition"
-elif answer == 4:
-    print("You are now a Sniper")
-    player_class = "sniper"
-player = CharacterFactory.create_char(player_class, name)
-print("Hello, " + name + "! The world has been overrun by zombies and you're one of the few survivors.")
+def slow_print(text, delay=0.05):
+    for char in text:
+        print(char, end='', flush=True)
+        sleep(delay)
+    print()
+
+
 
 zombie = Zombie()
+zom_dog = ZombieDog()
+zom_mut = MutantZombie()
+
+# Game Story of Zombie 
+slow_print("Welcome to the Zombie game!")
+sleep(1)
+slow_print("What is your name?")
+name = input()
+slow_print("Hello, " + name + "! The world has been overrun by zombies and you're one of the few survivors.\nYour military background will surely give you an advantage.")
+sleep(1)
+slow_print("Tell me, what was your specialization again? ")
+slow_print(f" [1] Soldier:\t{style.RED}HP: 90 {style.BLUE}Damage: 10 {style.YELLOW}Armor: 5{style.RESET}\n [2] Medic:\t{style.RED}HP 100 {style.BLUE}Damage:  6 {style.YELLOW}Armor: 4{style.RESET}\n [3] Demolition:{style.RED}HP: 70 {style.BLUE}Damage: 12 {style.YELLOW}Armor: 4 {style.RESET}\n [4] Sniper:\t{style.RED}HP: 60 {style.BLUE}Damage: 16 {style.YELLOW}Armor: 6{style.RESET} ")
+answer = int(input())
+if answer == 1:
+    slow_print("You are now a Soldier ")
+    player_class = "soldier"
+elif answer == 2:
+    slow_print("You are now a Medic ")
+    player_class = "medic"
+elif answer == 3:
+    slow_print("You are now a Demolition ")
+    player_class = "demolition"
+elif answer == 4:
+    slow_print("You are now a Sniper")
+    player_class = "sniper"
+player = CharacterFactory.create_char(player_class, name)
+
+sleep(1)
+system("clear")
 weapon_choice(player)
-print(type(player.weapon[0].type))
-#system("clear")
-combat(player,zombie)
 sleep(2)
 system("clear")
 # Searching for supplies
-print("You're in a small town and need to find supplies to survive.")
-print("You can either search the grocery store, the weapon store, or Medical Care.")
-choice = input("Enter 'grocery', 'weapon store', or 'Medical Care': ")
-if choice == "grocery":
+slow_print("You are wandering through a small town and need to reach a safe spot.")
+slow_print("You look around. On your left is a grocery store. Probably looted already, but maybe worth a look.\nOn your right is a weapon store. If you continue down the road there is a hospital ahead")
+slow_print("[1] Grocery\n[2] Weapon store\n[3] Hospital")
+choice = input()
+if choice == "1":
     system("clear")
-    print("You search the grocery store and find some food and water.")
-    print("You also find a first aid kit and a Sword.")
+    slow_print("You search the Grocery store and find some food and water.")
+    slow_print("You also find a first aid kit")
     player.inventory.append("First_aid_kit")
-    print(player.inventory[0])
+    slow_print("First aid kit added to inventory!")
+    slow_print("You also see a dead body, mauled by zombies. The lifeless body clings to a rare Energy sword.")
     for weapon in player.weapon:
-        print(f"You already have a weapon. Replace {player.weapon[0].type} with Sword?  (Y/N)")
+        slow_print(f"You already have a weapon. Replace {player.weapon[0].name} with Sword?  (Y/N)")
         ans = input()
         if ans.lower() == "y":
-            print(f"replaced {player.weapon[0].type} with Sword")
+            slow_print(f"Replaced {player.weapon[0].name} with Sword")
             sword = Sword("melee",7)
             player.weapon[0] = sword
-    
+            break
+        else:
+            slow_print(f"You leave the weapon. Surely didn't gift it's last owner with luck")
+            break
+    slow_print("You suddenly hear noises in a backroom of the Grocery Store. You check it out. It is a Zombie! ")
+    combat(player, zombie)
+    sleep(2)
+    system("clear")
+    slow_print(f"After fighting the Zombie you decide to leave the Grocery store.")
 
-elif choice == "weapon store":
+elif choice == "Weapon store":
     system("clear")
     print("You search the weapon store and find some weapons and tools.")
     print("You find an Axe")
@@ -63,7 +87,8 @@ elif choice == "weapon store":
         if ans.lower() == "y":
             print(f"replaced {player.weapon[0].type} with Axe")
             axe = Axe("melee",5)
-            player.weapon[0] = axe
+            player.weapon[0] = axe  
+
 elif choice == "medical care":
     system("clear")
     print("You search the hospital and find some medical supplies.")
@@ -116,3 +141,7 @@ elif choice == "sneak":
     print("You move slowly and quietly, trying not to attract attention.")
     print("You're able to make it to a safe zone, but some of them")
     print("Congratulations, " + name + "! You survived the zombie .")
+
+
+
+

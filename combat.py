@@ -1,17 +1,19 @@
-
-from playable_chars import CharacterFactory
+from gamestory import slow_print
+from playable_chars import *
 from enemy import Zombie
 from time import sleep
 
 
 def combat(player, zombie):
     while player.health > 0 and zombie.health > 0:
-        print("What do you want to do? [1] Shoot  [2] Hit\n [3] Inventory  [4] Run")
+        print("What do you want to do?")
+        print("[1] Shoot      [2] Hit")
+        print("[3] Inventory  [4] Run")
         choice = input()
-        if choice == "1" and player.shoot(zombie.name) == True:
+        
+        if choice == "1" and player.check_range() == True:
             if player.health > 0:
-                player.shoot(zombie.name)
-                zombie.health - player.damage
+                player.calc_damage()
                 sleep(1)
                 zombie.defend(player)
                 sleep(1)
@@ -20,10 +22,17 @@ def combat(player, zombie):
                 sleep(1)
                 player.take_damage(zombie.damage)
                 sleep(1)
-        elif choice == "2" and player.hit(zombie.name) == True:
+                if player.health <= 0:
+                    print(f"You died. Game over")
+                    exit()
+                elif zombie.health <= 0:
+                    print(f"You defeated {zombie.name}!")
+                    break
+                else:
+                    continue
+        elif choice == "2" and player.check_melee() == True:
             if player.health > 0:
-                player.hit(zombie.name)
-                zombie.health - player.damage
+                player.calc_damage()
                 sleep(1)
                 zombie.defend(player)
                 sleep(1)
@@ -32,6 +41,14 @@ def combat(player, zombie):
                 sleep(1)
                 player.take_damage(zombie.damage)
                 sleep(1)
+                if zombie.health <= 0:
+                    print(f"You defeated {zombie.name}! ")
+                    zombie.health = 75
+                elif player.health <= 0:
+                    print(f"You died. Game over")
+                    exit()
+                else:
+                    continue
         elif choice == "3":
                 player.check_inventory()
         elif choice == "4":

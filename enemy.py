@@ -32,7 +32,7 @@ class Zombie(Enemy):
         damage = 10
 
     def attack(self, target):
-        print(f'{self.name} bites the {target.name}')
+        print(f'{self.name} bites you!')
         return 
 
     def defend(self, attacker):
@@ -46,12 +46,12 @@ class Zombie(Enemy):
             self.take_damage(attacker.damage)
         elif x == 2:
             print(
-                f'{self.name}  cannot dodge the {attacker.name} and get hit in body!')
+                f'{self.name}  cannot dodge your attack and gets hit in body! [Damage x2!]')
             self.take_damage(attacker.damage * 2)
         else:
             print(
-                f"{attacker.name} attack hit {self.name}'s head. Critical strike!!!")
-            self.take_damage(attacker.damage * 5)
+                f'Your attack hits {self.name}s head. Critical strike!!! [Damage x3!!]')
+            self.take_damage(attacker.damage * 3)
 
 
 class ZombieDog(Enemy):
@@ -60,8 +60,7 @@ class ZombieDog(Enemy):
         
 
     def attack(self, target):
-        print(f'{self.name} bites the  {target.name}')
-        target.defend(self)
+        print(f'{self.name} bites the you!')
 
     def defend(self, attacker):
         p_choices = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4]
@@ -69,19 +68,19 @@ class ZombieDog(Enemy):
         limps = ['arm', 'leg', 'foot', 'knee', 'hand', 'shoulder']
         y = random.choice(limps)
         if x == 1:
-            print(f"{attacker.name}'s attack missed, {self.name} got no damage.")
+            print(f"Your attack missed, {self.name} got no damage.")
         elif x == 2:
             print(
-                f"{self.name} dodges {attacker.name}'s attack, but attack hits his {y}.")
-            self.take_damage(10)
+                f"{self.name} dodges your attack, but attack hits his {y}.")
+            self.take_damage(attacker.damage)
         elif x == 3:
             print(
-                f'{self.name}  cannot dodge the {attacker.name} and get hit in body!')
-            self.take_damage(20)
+                f'{self.name}  cannot dodge the your attack and gets hit in the body! [Damage x2!]')
+            self.take_damage(attacker.damage * 2)
         else:
             print(
-                f"{attacker.name} attack hit {self.name}'s head. Critical strike!!!")
-            self.take_damage(self.health)
+                f"Your attack hits {self.name}'s head. Critical strike!!! [Damage x3!!]")
+            self.take_damage(attacker.damage * 3)
 
 
 class MutantZombie(Enemy):
@@ -90,8 +89,7 @@ class MutantZombie(Enemy):
         
 
     def attack(self, target):
-        print(f'{self.name} bites the survivor{target.name}')
-        #target.defend(self)
+        print(f'{self.name} bites you!')
 
     def defend(self, attacker):
         p_choices = [1, 2, 3, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4]
@@ -100,29 +98,17 @@ class MutantZombie(Enemy):
         y = random.choice(limps)
         if x == 1:
             print(
-                f"{attacker.name} hits the armor body part. {self.name} gets no damage.")
+                f"Your attack hits the armor body part. {self.name} gets no damage.")
             self.take_damage(0)
         elif x == 2:
             print(
-                f"{self.name} dodges {attacker.name}'s attack, but attack hits his {y}.")
-            self.take_damage(10)
+                f"{self.name} dodges your attack, but attack hits his {y}.")
+            self.take_damage(attacker.damage)
         elif x == 2:
             print(
-                f'{self.name}  cannot dodge the {attacker.name} and get hit in body!')
-            self.take_damage(20)
+                f'{self.name}  cannot dodge your attack and gets hit in body! [Damage x2!]')
+            self.take_damage(attacker.damage * 2)
         else:
             print(
-                f"{attacker.name} attack hit {self.name}'s head. Critical strike!!!")
-            self.take_damage(self.health)
-
-
-#zombie = Zombie('Zombie', 100, 10)
-#dog_z = ZombieDog('ZombieDog', 120, 10)
-
-"""while zombie.health > 0 and dog_z.health > 0:
-    if zombie.health > 0:
-        sleep(0.5)
-        zombie.attack(dog_z)
-    if dog_z.health > 0:
-        sleep(0.5)
-        dog_z.attack(zombie)"""
+                f"Your attack hits {self.name}'s head. Critical strike!!! [Damage x3!!]")
+            self.take_damage(attacker.damage * 3)
