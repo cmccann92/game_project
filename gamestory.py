@@ -5,9 +5,12 @@ from weapon import *
 from gamestory import *
 from time import sleep
 from combat import *
+import colorama
+from colorama import Fore, Back, Style
+colorama.init(autoreset=True)
 
 # Game Story of Zombie 
-print("Welcome to the Zombie game!")
+print(f"{Fore.MAGENTA}Welcome to the Zombie game!")
 name = input("What's your name? ")
 print("What class do you choose?\n [1] Soldier: HP: 90. Damage: 10. Armor: 5\n [2] Medic: HP 100. Damage: 6. Armor: 4\n [3] Demolition: HP: 70. Damage: 12. Armor: 7\n [4] Sniper: HP: 60. Damage: 15. Armor: 3 ")
 answer = int(input())
