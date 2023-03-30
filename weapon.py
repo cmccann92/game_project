@@ -90,7 +90,7 @@ def weapon_choice(player):
             gun1.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
-                print(style.GREEN +"Nice choice")
+                print(f"{style.GREEN} Nice choice{style.RESET}")
                 player.weapon.append(gun1)
                 break
             elif ans.lower() == "n":
@@ -101,7 +101,7 @@ def weapon_choice(player):
             ball.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
-                print(style.GREEN +"Nice choice")
+                print(f"{style.GREEN} Nice choice{style.RESET}")
                 player.weapon.append(ball)
                 break
             elif ans.lower() == "n":
@@ -112,7 +112,7 @@ def weapon_choice(player):
             sword.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
-                print(style.GREEN +"Nice choice")
+                print(f"{style.GREEN} Nice choice{style.RESET}")
                 player.weapon.append(sword)
                 break
             elif ans.lower() == "n":
@@ -123,7 +123,7 @@ def weapon_choice(player):
             axe.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
-                print(style.GREEN +"Nice choice")
+                print(f"{style.GREEN} Nice choice{style.RESET}")
                 player.weapon.append(axe)
                 break
             elif ans.lower() == "n":
@@ -134,7 +134,7 @@ def weapon_choice(player):
             bomb.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
-                print(style.GREEN +"Nice choice")
+                print(f"{style.GREEN} Nice choice{style.RESET}")
                 player.weapon.append(bomb)
                 break
             elif ans.lower() == "n":
