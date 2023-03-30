@@ -13,7 +13,7 @@ class style():
 class Weapons:
     def __init__(self,type, damage):
         self.type = style.GREEN +type
-        self.damage = style.RED +damage
+        self.damage = damage
        
 class Lancer(Weapons):
     def __init__(self, type, damage):
@@ -74,11 +74,11 @@ def weapon_choice(player):
 
         if usr_response == 1:  
             gun = Lancer('range',10)
-            gun = style.GREEN +Lancer('Gun',10)
+            gun = Lancer('Gun',10)
             gun.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
-                print(style.GREEN + "Nice choice")
+                print(f"{style.RED}Nice choice {style.RESET}")
                 player.weapon.append(gun)
                 break
             elif ans.lower() == "n":
@@ -109,7 +109,7 @@ def weapon_choice(player):
                 continue
         
         elif usr_response == 4:
-            sword = Sword('melee,7') 
+            sword = Sword('melee',7) 
             sword.attack()
             ans = input("Choose this weapon? (Y/N) ")
             if ans.lower() == "y":
