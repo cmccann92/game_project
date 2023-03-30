@@ -12,8 +12,8 @@ class style():
 
 class Weapons:
     def __init__(self,type, damage):
-        self.type = type
-        self.damage = damage
+        self.type = style.GREEN +type
+        self.damage = style.RED +damage
        
 class Lancer(Weapons):
     def __init__(self, type, damage):
