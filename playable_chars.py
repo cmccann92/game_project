@@ -1,5 +1,5 @@
 from time import sleep
-
+from weapon import *
 def slow_print(text, delay=0.05):
     for char in text:
         print(char, end='', flush=True)
@@ -38,12 +38,23 @@ class Character:
     
     def check_inventory(self):
         for item in self.inventory:
+            slow_print("\t INVENTORY")
             slow_print(item)
+            slow_print(f"[1]Use {item}\n[2]exit")
+            choice = input()
+            if choice == "1":
+                print(f"{item} used. Healed for 20 HP")
+                self.health += 20
+                self.inventory.remove(item)
+            elif choice == "2":
+                continue
+            else:
+                continue
     
     def take_damage(self,damage):
         total =  damage - self.armor
         self.health -= total
-        return  slow_print(f"You took {total} damage. Remaining health: {self.health}")
+        return  slow_print(f"{style.RED}You took {total} damage. Remaining health: {self.health}{style.RESET}")
 
     def run(self):
        slow_print(f"You run away from the fight.")

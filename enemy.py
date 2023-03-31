@@ -1,6 +1,12 @@
 from time import sleep
 import random
+from weapon import *
 
+def slow_print(text, delay=0.05):
+    for char in text:
+        print(char, end='', flush=True)
+        sleep(delay)
+    print()
 
 class Enemy:
     def __init__(self, name, health: int, damage):
@@ -9,30 +15,28 @@ class Enemy:
         self.damage = damage
 
     def attack(self, target):
-        print(f'{self.name} attacks {target.name}')
+        slow_print(f'{self.name} attacks you!{style.RESET}')
         target.defend(self)
 
     def defend(self, attacker):
-        print(f'{self.name} defends against {attacker.name}')
+        slow_print(f'{self.name} defends against {attacker.name}')
         self.take_damage(25)
 
     def take_damage(self, damage):
         self.health -= damage
         if self.health <= 0:
-            print(f'{self.name} has been defeated!')
+            slow_print(f'{style.BLUE}{self.name} has been defeated!{style.RESET}')
         else:
-            print(
-                f'{self.name} takes {damage} damage and has {self.health} health remaining')
+            slow_print(
+                f'{style.BLUE}{self.name} takes {damage} damage and has {self.health} health remaining{style.RESET}')
 
 
 class Zombie(Enemy):
     def __init__(self):
         super().__init__("Zombie", 75, 8)
-    #    self.bite = bite
-        damage = 10
 
     def attack(self, target):
-        print(f'{self.name} bites you!')
+        slow_print(f'{style.RED}{self.name} bites you!{style.RESET}')
         return 
 
     def defend(self, attacker):
@@ -41,16 +45,16 @@ class Zombie(Enemy):
         limps = ['arm', 'leg', 'foot', 'knee', 'hand', 'shoulder']
         y = random.choice(limps)
         if x == 1:
-            print(
-                f"{self.name} dodges {attacker.name}'s attack, but attack hits the {y}.")
+            slow_print(
+                f"{style.BLUE}{self.name} dodges your attack, but attack hits the {y}.{style.RESET}")
             self.take_damage(attacker.damage)
         elif x == 2:
-            print(
-                f'{self.name}  cannot dodge your attack and gets hit in body! [Damage x2!]')
+            slow_print(
+                f'{style.BLUE}{self.name} cannot dodge your attack and gets hit in body! [Damage x2!]{style.RESET}')
             self.take_damage(attacker.damage * 2)
         else:
-            print(
-                f'Your attack hits {self.name}s head. Critical strike!!! [Damage x3!!]')
+            slow_print(
+                f'{style.BLUE}Your attack hits {self.name}s head. Critical strike!!! [Damage x3!!]{style.RESET}')
             self.take_damage(attacker.damage * 3)
 
 
@@ -60,7 +64,7 @@ class ZombieDog(Enemy):
         
 
     def attack(self, target):
-        print(f'{self.name} bites the you!')
+        slow_print(f'{style.RED}{self.name} bites you!{style.RESET}')
 
     def defend(self, attacker):
         p_choices = [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4]
@@ -68,18 +72,18 @@ class ZombieDog(Enemy):
         limps = ['arm', 'leg', 'foot', 'knee', 'hand', 'shoulder']
         y = random.choice(limps)
         if x == 1:
-            print(f"Your attack missed, {self.name} got no damage.")
+            slow_print(f"{style.BLUE}Your attack missed, {self.name} got no damage.{style.RESET}")
         elif x == 2:
-            print(
-                f"{self.name} dodges your attack, but attack hits his {y}.")
+            slow_print(
+                f"{style.BLUE}{self.name} dodges your attack, but attack hits his {y}.{style.RESET}")
             self.take_damage(attacker.damage)
         elif x == 3:
-            print(
-                f'{self.name}  cannot dodge the your attack and gets hit in the body! [Damage x2!]')
+            slow_print(
+                f'{style.BLUE}{self.name}  cannot dodge your attack and gets hit in the body! [Damage x2!]{style.RESET}')
             self.take_damage(attacker.damage * 2)
         else:
-            print(
-                f"Your attack hits {self.name}'s head. Critical strike!!! [Damage x3!!]")
+            slow_print(
+                f"{style.BLUE}Your attack hits {self.name}'s head. Critical strike!!! [Damage x3!!]{style.RESET}")
             self.take_damage(attacker.damage * 3)
 
 
@@ -89,7 +93,7 @@ class MutantZombie(Enemy):
         
 
     def attack(self, target):
-        print(f'{self.name} bites you!')
+        slow_print(f'{style.RED}{self.name} bites you!{style.RESET}')
 
     def defend(self, attacker):
         p_choices = [1, 2, 3, 4, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4]
@@ -97,18 +101,18 @@ class MutantZombie(Enemy):
         limps = ['arm', 'leg', 'foot', 'knee', 'hand', 'shoulder']
         y = random.choice(limps)
         if x == 1:
-            print(
-                f"Your attack hits the armor body part. {self.name} gets no damage.")
+            slow_print(
+                f"{style.BLUE}Your attack hits the armor body part. {self.name} gets no damage.{style.RESET}")
             self.take_damage(0)
         elif x == 2:
-            print(
-                f"{self.name} dodges your attack, but attack hits his {y}.")
+            slow_print(
+                f"{style.BLUE}{self.name} dodges your attack, but attack hits his {y}.{style.RESET}")
             self.take_damage(attacker.damage)
         elif x == 2:
-            print(
-                f'{self.name}  cannot dodge your attack and gets hit in body! [Damage x2!]')
+            slow_print(
+                f'{style.BLUE}{self.name}  cannot dodge your attack and gets hit in body! [Damage x2!]{style.RESET}')
             self.take_damage(attacker.damage * 2)
         else:
-            print(
-                f"Your attack hits {self.name}'s head. Critical strike!!! [Damage x3!!]")
+            slow_print(
+                f"{style.BLUE}Your attack hits {self.name}'s head. Critical strike!!! [Damage x3!!]{style.RESET}")
             self.take_damage(attacker.damage * 3)
